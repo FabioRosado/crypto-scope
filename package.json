@@ -1,0 +1,19 @@
+{
+  "name": "crypto-scope",
+  "version": "0.0.1",
+  "description": "Real time cryptocurrency watcher.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "2.0.9"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "npm": "^6.4.1"
+  }
+}
