@@ -28,19 +28,13 @@ function compareValue(previous, actual){
 function getValues() {
   axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,LTC,EOS,BCH,&tsyms=GBP')
        .then(res => {
-          const btc = res.data.BTC.GBP
-          const eth = res.data.ETH.GBP
-          const ltc = res.data.LTC.GBP
-          const bch = res.data.BCH.GBP
-          const eos = res.data.EOS.GBP
-          const etc = res.data.ETC.GBP
 
-          btcPrice.innerHTML = compareValue(btcPrice.innerHTML, btc)
-          ethPrice.innerHTML = compareValue(ethPrice.innerHTML, eth)
-          ltcPrice.innerHTML = compareValue(ltcPrice.innerHTML, ltc)
-          bchPrice.innerHTML = compareValue(bchPrice.innerHTML, bch)
-          eosPrice.innerHTML = compareValue(eosPrice.innerHTML, eos)
-          etcPrice.innerHTML = compareValue(etcPrice.innerHTML, etc)
+          btcPrice.innerHTML = compareValue(btcPrice.innerHTML, res.data.BTC.GBP)
+          ethPrice.innerHTML = compareValue(ethPrice.innerHTML, res.data.ETH.GBP)
+          ltcPrice.innerHTML = compareValue(ltcPrice.innerHTML, res.data.LTC.GBP)
+          bchPrice.innerHTML = compareValue(bchPrice.innerHTML, res.data.BCH.GBP)
+          eosPrice.innerHTML = compareValue(eosPrice.innerHTML, res.data.EOS.GBP)
+          etcPrice.innerHTML = compareValue(etcPrice.innerHTML, res.data.ETC.GBP)
 
 
          if (targetPrice.innerHTML && targetPriceVal < res.data.USD) {
