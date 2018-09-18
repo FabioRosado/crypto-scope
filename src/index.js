@@ -5,7 +5,6 @@ const BrowserWindow = electron.remote.BrowserWindow
 const ipc = electron.ipcRenderer
 
 const notifyBtn = document.getElementById('notifyBtn')
-const price = document.getElementById('btcPrice')
 const targetPrice = document.getElementById('targetPrice')
 let targetPriceVal
 
@@ -15,22 +14,34 @@ const notification = {
   icon: path.join(__dirname, '../assets/images/bitcoin.png')
 }
 
-function getBTC() {
+function compareValue(previous, actual){
+  const normalizedPrevious = Number(previous.replace(/<.*>|\,|£/g, ''))
+  if (normalizedPrevious < actual) {
+    return '<span id="currentValue"><img src="../assets/images/rise.svg"> £' + actual.toLocaleString('en') + '</span>'
+  } else if (normalizedPrevious > actual) {
+    return '<span id="currentValue"><img src="../assets/images/drop.svg"> £' + actual.toLocaleString('en') + '</span>'
+  } else {
+    return '<span id="currentValue"><img src="../assets/images/equal.svg"> £' + actual.toLocaleString('en') + '</span>'
+  }
+}
+
+function getValues() {
   axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,LTC,EOS,BCH,&tsyms=GBP')
        .then(res => {
-         const btc = res.data.BTC.GBP
-         const eth = res.data.ETH.GBP
-         const ltc = res.data.LTC.GBP
-         const bch = res.data.BCH.GBP
-         const eos = res.data.EOS.GBP
-         const etc = res.data.ETC.GBP
+          const btc = res.data.BTC.GBP
+          const eth = res.data.ETH.GBP
+          const ltc = res.data.LTC.GBP
+          const bch = res.data.BCH.GBP
+          const eos = res.data.EOS.GBP
+          const etc = res.data.ETC.GBP
 
-         btcPrice.innerHTML = '£' + btc.toLocaleString('en')
-         ethPrice.innerHTML = '£' + eth.toLocaleString('en')
-         ltcPrice.innerHTML = '£' + ltc.toLocaleString('en')
-         bchPrice.innerHTML = '£' + bch.toLocaleString('en')
-         eosPrice.innerHTML = '£' + eos.toLocaleString('en')
-         etcPrice.innerHTML = '£' + etc.toLocaleString('en')
+          btcPrice.innerHTML = compareValue(btcPrice.innerHTML, btc)
+          ethPrice.innerHTML = compareValue(ethPrice.innerHTML, eth)
+          ltcPrice.innerHTML = compareValue(ltcPrice.innerHTML, ltc)
+          bchPrice.innerHTML = compareValue(bchPrice.innerHTML, bch)
+          eosPrice.innerHTML = compareValue(eosPrice.innerHTML, eos)
+          etcPrice.innerHTML = compareValue(etcPrice.innerHTML, etc)
+
 
          if (targetPrice.innerHTML && targetPriceVal < res.data.USD) {
            const myNotification = new window.Notification(notification.title, notification)
@@ -38,8 +49,8 @@ function getBTC() {
        })
 }
 
-getBTC()
-setInterval(getBTC, 30000);
+getValues()
+setInterval(getValues, 30000);
 
 notifyBtn.addEventListener('click', function(event) {
   const modalPath = path.join('file://', __dirname, 'add.html')
