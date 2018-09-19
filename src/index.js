@@ -15,7 +15,8 @@ const notification = {
 }
 
 function compareValue(previous, actual){
-  const normalizedPrevious = Number(previous.replace(/<.*>|\,|£/g, ''))
+  const normalizedPrevious = Number(previous.replace(/<.*><.*>\s£|\,|<\/span>/g, ''))
+
   if (normalizedPrevious < actual) {
     return '<span id="currentValue"><img src="../assets/images/rise.svg"> £' + actual.toLocaleString('en') + '</span>'
   } else if (normalizedPrevious > actual) {
