@@ -39,7 +39,17 @@ const ipc = require('electron').ipcMain
           },
         ]
       },
-      {label: "Info"},
+      {
+        label: "Options",
+        submenu: [
+          {
+            label: "Settings",
+            click() {
+              openSettings()
+            }
+          },
+        ]
+      },
     ])
     Menu.setApplicationMenu(menu);
   
@@ -83,3 +93,18 @@ const ipc = require('electron').ipcMain
   ipc.on('update-notify-value', function(event, arg){
     win.webContents.send('targetPriceVal', arg)
   })
+
+  function openSettings() {
+    const modalPath = path.join('file://', __dirname, 'src', 'settings.html')
+    console.log(modalPath);
+    let win = new BrowserWindow(
+      {
+        alwaysOnTop: true, 
+        width: 400, 
+        height: 400
+      })
+      win.loadURL(modalPath)
+      win.on('close', function(){ win = null })
+      win.show()
+      win.webContents.openDevTools()
+  }

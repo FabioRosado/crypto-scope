@@ -7,13 +7,14 @@
     "start": "electron ."
   },
   "keywords": [],
-  "author": "",
+  "author": "FabioRosdo",
   "license": "ISC",
   "devDependencies": {
     "electron": "2.0.9"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "electron-store": "^2.0.0",
     "npm": "^6.4.1"
   }
 }

@@ -1,6 +1,8 @@
 const electron = require('electron')
 const path = require('path')
 const axios = require('axios')
+const Store = require('electron-store')
+const store = new Store()
 const BrowserWindow = electron.remote.BrowserWindow
 const ipc = electron.ipcRenderer
 
@@ -27,7 +29,13 @@ function compareValue(previous, actual){
 }
 
 function getValues() {
-  axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,ETC,LTC,EOS,BCH,&tsyms=GBP')
+  const currency = store.get('currency', 'GBP');
+  const cryptocurrencies = store.get('cryptocurrencies', 'BTC,ETH,ETC,LTC,EOS,BCH')
+
+  axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${cryptocurrencies}&tsyms=${currency}`)
+       .catch(error => {
+        console.error(error);
+      })
        .then(res => {
 
           btcPrice.innerHTML = compareValue(btcPrice.innerHTML, res.data.BTC.GBP)
@@ -54,8 +62,8 @@ notifyBtn.addEventListener('click', function(event) {
       frame: false, 
       transparent: true, 
       alwaysOnTop: true, 
-       width: 400, 
-       height: 200
+      width: 400,
+      height: 200
     })
   win.on('close', function(){ win = null })
   win.loadURL(modalPath)
