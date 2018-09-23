@@ -14,5 +14,5 @@ function getForm() {
 
   const currency = form.elements['currency'].value;
   store.set({'currency': currency, "cryptocurrencies": crypto})
-
+  console.log(store);
 }
