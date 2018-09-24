@@ -1,0 +1,23 @@
+#cryptocurrencies {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem
+}
+
+#currencies {
+  padding: 0rem 1rem 1rem;
+}
+
+#buttons {
+  display: flex;
+  padding: 0rem 1rem 1rem;
+}
+
+#was-sent {
+  display: none;
+  padding-left: 1rem;
+}
+
+#checkmark {
+  width: 15px;
+}

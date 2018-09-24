@@ -10,17 +10,29 @@
 </head>
 <body>
   <form id="set-settings">
-    <input type="checkbox" name="crypto" value="BTC" checked>BTC<br>
-    <input type="checkbox" name="crypto" value="ETH" checked>ETH<br>
-    <input type="checkbox" name="crypto" value="LTC" checked>LTC<br>
-    <input type="checkbox" name="crypto" value="EOS" checked>EOS<br>
-    <input type="checkbox" name="crypto" value="BCH" checked>BCH<br>
-    <input type="checkbox" name="crypto" value="ETC" checked>ETC<br>
+    <div id="cryptocurrencies">
+      <div>
+        <input type="checkbox" name="crypto" value="BTC" checked>BTC<br>
+        <input type="checkbox" name="crypto" value="ETH" checked>ETH<br>
+        <input type="checkbox" name="crypto" value="LTC" checked>LTC<br>
+      </div>
+      <div>
+        <input type="checkbox" name="crypto" value="EOS" checked>EOS<br>
+        <input type="checkbox" name="crypto" value="BCH" checked>BCH<br>
+        <input type="checkbox" name="crypto" value="ETC" checked>ETC<br>
+      </div>
+    </div>
 
-    <input type="radio" name="currency" value="GBP" checked>GBP<br>
-    <input type="radio" name="currency" value="USD">USD<br>
-    <input type="radio" name="currency" value="EUR">EUR<br>
-    <button type="button" onclick="getForm()">Submit</button>
+    <div id="currencies">
+      <input type="radio" name="currency" value="GBP" checked>GBP<br>
+      <input type="radio" name="currency" value="USD">USD<br>
+      <input type="radio" name="currency" value="EUR">EUR<br>
+    </div>
+    <div id="buttons">
+        <button type="button" onclick="getForm()">Submit</button>
+        <span id="was-sent"><img id="checkmark" src="../assets/images/checkmark.svg"> Settings saved</span>
+    </div>
+    
   </form>
 
   <script src="settings.js"></script>
