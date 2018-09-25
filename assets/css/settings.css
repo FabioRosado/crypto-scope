@@ -1,5 +1,5 @@
 body {
-  background: #DFDFDF;
+  background: rgb(229, 229, 229);
   color: #000;
   overflow: hidden;
 }
@@ -13,15 +13,26 @@ img {
   padding-right: 1rem;
 }
 
+#settings-text {
+  position: fixed;
+  padding: 0rem 1.5rem 0rem 1.5rem;
+  left: 4rem;
+  margin: -.6rem 0rem 0rem 0rem;
+  background-color: rgb(229, 229, 229);
+  text-transform: uppercase;
+}
+
 #cryptocurrencies {
+  margin: 2rem 0rem 2rem 0rem;
   display: flex;
   flex-direction: row;
-  padding: 1rem
+  padding: 1.5rem 0rem 1rem 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.26);
 }
 
 #currencies {
-  padding: 0rem 1rem 1rem;
-  margin-left: 15%;
+  padding: 1.5rem 4rem 1rem;
+  border: 1px solid rgba(128, 128, 128, 0.26);
 }
 
 #currency-symbol {
@@ -35,16 +46,17 @@ img {
 
 #buttons {
   display: flex;
-  padding: 0rem 1rem 1rem;
-  margin-left: 15%;
+  padding: 1rem 1rem .5rem 0rem;
+  margin-left: 30%;
 }
 
 #was-sent {
   display: none;
-  padding-left: 1rem;
+  margin-left: 10%;
+  font-size: .9rem;
 }
 
-html, body {
+/* html, body {
   background: rgba(226, 226, 226, 0.5);
   height: 100%;
-}
+} */

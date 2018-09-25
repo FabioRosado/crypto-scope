@@ -32,20 +32,15 @@ const ipc = require('electron').ipcMain
           },
           {type: "separator"},
           {
-            label: "Exit",
-            click() {
-              app.quit()
-            }
-          },
-        ]
-      },
-      {
-        label: "Options",
-        submenu: [
-          {
             label: "Settings",
             click() {
               openSettings()
+            }
+          },
+          {
+            label: "Exit",
+            click() {
+              app.quit()
             }
           },
         ]
@@ -101,10 +96,9 @@ const ipc = require('electron').ipcMain
       {
         alwaysOnTop: true, 
         width: 250, 
-        height: 250,
+        height: 380,
       })
       win.loadURL(modalPath)
       win.on('close', function(){ win = null })
       win.show()
-      win.webContents.openDevTools()
   }

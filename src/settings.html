@@ -10,6 +10,7 @@
 </head>
 <body>
   <form id="set-settings">
+    <p id="settings-text">Cryptos</p>
     <div id="cryptocurrencies">
       <div id="left-column">
         <input type="checkbox" name="crypto" value="BTC" checked><img src="../assets/images/bitcoin.svg"> BTC<br>
@@ -23,15 +24,16 @@
       </div>
     </div>
 
+    <p id="settings-text">Currency</p>
     <div id="currencies">
       <input type="radio" name="currency" value="GBP" checked><span id="currency-symbol">£</span> GBP<br>
       <input type="radio" name="currency" value="USD"><span id="currency-symbol">$</span> USD<br>
       <input type="radio" name="currency" value="EUR"><span id="currency-symbol">€</span> EUR<br>
     </div>
     <div id="buttons">
-        <button type="button" onclick="getForm()">Submit</button>
-        <span id="was-sent"><img src="../assets/images/checkmark.svg"> Settings saved</span>
+        <button type="button" onclick="getForm()">Submit</button><br>
     </div>
+    <span id="was-sent"><img src="../assets/images/checkmark.svg"> Settings saved</span>
     
   </form>
 
