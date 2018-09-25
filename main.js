@@ -101,7 +101,7 @@ const ipc = require('electron').ipcMain
       {
         alwaysOnTop: true, 
         width: 250, 
-        height: 250
+        height: 250,
       })
       win.loadURL(modalPath)
       win.on('close', function(){ win = null })
