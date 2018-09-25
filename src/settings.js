@@ -15,4 +15,5 @@ function getForm() {
   const currency = form.elements['currency'].value;
   store.set({'currency': currency, "cryptocurrencies": crypto})
   document.getElementById('was-sent').style.display = "block";
+  setTimeout("window.close()", 1000);
 }

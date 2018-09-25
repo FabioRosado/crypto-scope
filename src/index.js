@@ -10,7 +10,7 @@ const notifyBtn = document.getElementById('notifyBtn')
 const targetPrice = document.getElementById('targetPrice')
 let targetPriceVal
 const currency = store.get('currency', 'GBP');
-const cryptocurrencies = store.get('cryptocurrencies', 'BTC,ETH,ETC,LTC,EOS,BCH')
+const cryptocurrencies = store.get('cryptocurrencies', 'BTC,ETH,ETC,LTC,XRP,BCH')
 
 const notification = {
   title: 'BTC Alert',
@@ -83,8 +83,8 @@ function getValues() {
             case "BCH":
               bchPrice.innerHTML = compareValue(bchPrice.innerHTML, Object.values(res.data.BCH)[0], currency)
               break;
-            case "EOS":
-              eosPrice.innerHTML = compareValue(eosPrice.innerHTML, Object.values(res.data.EOS)[0], currency)
+            case "XRP":
+              xrpPrice.innerHTML = compareValue(xrpPrice.innerHTML, Object.values(res.data.XRP)[0], currency)
               break;
             case "ETC":
               etcPrice.innerHTML = compareValue(etcPrice.innerHTML, Object.values(res.data.ETC)[0], currency)
