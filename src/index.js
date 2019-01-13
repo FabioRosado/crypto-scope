@@ -21,11 +21,16 @@ const notification = {
 function buildHTMLFields(crypto, currency) {
   let row = `<div class="row">
     <div id="price-container">
-      <p class="subtext">Current ${crypto} ${currency}</p>
+      <p id="${crypto.toLowerCase()}Intro">Current ${crypto} in ${currency}</p>
       <h1 id="${crypto.toLowerCase()}Price">Loading...</h1>
     </div>
     <div id="goal-container">
-      <p><img src="../assets/images/up.svg"><span id="targetPrice">Choose a Target Price</span></p>
+      <p>
+        <img src="../assets/images/up.svg">
+        <span id="${crypto.toLowerCase()}TargetPrice">
+          Choose a Target Price
+        </span>
+      </p>
     </div>
     <div id="right-container">
       <button id="notifyBtn">Notify me when...</button>
@@ -59,6 +64,19 @@ function compareValue(previous, actual, currency){
   }
 }
 
+function updateSubtext(crypto, currency) {
+  return 'CURRENT ' + crypto + ' IN ' + currency
+}
+
+function toggleNotification(crypto, currentPrice) {
+  if (`${crypto}TargetPrice.innerHTML` && `${crypto}TargetPriceVal` < currentPrice) {
+    const myNotification = new window.Notification(notification.title, notification)
+  }
+  //   if (targetPrice.innerHTML && targetPriceVal < res.data.USD) {
+  //   const myNotification = new window.Notification(notification.title, notification)
+  // }
+}
+
 function getValues() {
   const currency = store.get('currency', 'GBP');
   const cryptocurrencies = store.get('cryptocurrencies', 'BTC,ETH,ETC,LTC,EOS,BCH')
@@ -72,30 +90,32 @@ function getValues() {
         for (const crypto in res.data) {
           switch(crypto) {
             case "BTC":
+              btcIntro.innerHTML = updateSubtext(crypto, currency)
               btcPrice.innerHTML = compareValue(btcPrice.innerHTML, Object.values(res.data.BTC)[0], currency)
               break;
             case "LTC":
+              ltcIntro.innerHTML = updateSubtext(crypto, currency)
               ltcPrice.innerHTML = compareValue(ltcPrice.innerHTML, Object.values(res.data.LTC)[0], currency)
               break;
             case "ETH":
+              ethIntro.innerHTML = updateSubtext(crypto, currency)
               ethPrice.innerHTML = compareValue(ethPrice.innerHTML, Object.values(res.data.ETH)[0], currency)
               break;
             case "BCH":
+              bchIntro.innerHTML = updateSubtext(crypto, currency)
               bchPrice.innerHTML = compareValue(bchPrice.innerHTML, Object.values(res.data.BCH)[0], currency)
               break;
             case "XRP":
+              xrpIntro.innerHTML = updateSubtext(crypto, currency)
               xrpPrice.innerHTML = compareValue(xrpPrice.innerHTML, Object.values(res.data.XRP)[0], currency)
               break;
             case "ETC":
+              etcIntro.innerHTML = updateSubtext(crypto, currency)
               etcPrice.innerHTML = compareValue(etcPrice.innerHTML, Object.values(res.data.ETC)[0], currency)
               break;
           }
         }
-
-        //  if (targetPrice.innerHTML && targetPriceVal < res.data.USD) {
-        //    const myNotification = new window.Notification(notification.title, notification)
-        //  }
-       })
+      })
 }
 
 // Create the fields to be populated by getValue()
@@ -110,20 +130,20 @@ for (c of cryptocurrencies.slice(0, -1).split(',')) {
 getValues()
 setInterval("getValues()", 30000);
 
-// notifyBtn.addEventListener('click', function(event) {
-//   const modalPath = path.join('file://', __dirname, 'add.html')
-//   let win = new BrowserWindow(
-//     {
-//       frame: false, 
-//       transparent: true, 
-//       alwaysOnTop: true, 
-//       width: 400,
-//       height: 200
-//     })
-//   win.on('close', function(){ win = null })
-//   win.loadURL(modalPath)
-//   win.show()
-// })
+notifyBtn.addEventListener('click', function(event) {
+  const modalPath = path.join('file://', __dirname, 'add.html')
+  let win = new BrowserWindow(
+    {
+      frame: false, 
+      transparent: true, 
+      alwaysOnTop: true, 
+      width: 400,
+      height: 200
+    })
+  win.on('close', function(){ win = null })
+  win.loadURL(modalPath)
+  win.show()
+})
 
 ipc.on('targetPriceVal', function(event, arg){
   targetPriceVal = Number(arg)
