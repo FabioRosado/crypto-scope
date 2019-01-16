@@ -145,7 +145,6 @@ function setNotification(crypto, currency, currentPrice) {
   })
 
 
-
   // Get the desired targed price that was input on add.html
   ipc.on('targetPriceVal', function(event, arg){
     targetPriceVal = Number(arg)
