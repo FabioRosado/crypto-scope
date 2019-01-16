@@ -54,6 +54,7 @@ function compareValue(previous, actual, currency){
   } else {
     return '<span id="currentValue"><img src="../assets/images/equal.svg"> ' + icon + actual.toLocaleString('en') + '</span>'
   }
+
 }
 
 function updateSubtext(crypto, currency) {
@@ -124,11 +125,10 @@ setInterval("getValues()", 30000);
 function setNotification(crypto, currency, currentPrice) { 
   const notifyBtn = document.getElementById(`${crypto.toLowerCase()}NotifyBtn`)
   const targetPrice = document.getElementById(`${crypto.toLowerCase()}TargetPrice`)
-  let targetPriceVal 
+
   icon = getCurrencyIcon(currency)
 
   // Calls add.html so user can input the desired target price
-  console.log(document.getElementById(`${crypto.toLowerCase()}NotifyBtn`))
   notifyBtn.addEventListener('click', function(event) {
     const modalPath = path.join('file://', __dirname, 'add.html')
     let win = new BrowserWindow(
@@ -165,8 +165,3 @@ function setNotification(crypto, currency, currentPrice) {
     const myNotification = new window.Notification(notification.title, notification)
   }
 }
-
-
-ipc.on('update-notify-value', function(event, arg){
-  win.webContents.send(`targetPriceVal`, arg)
-})

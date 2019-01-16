@@ -5,6 +5,7 @@ const ipc = electron.ipcRenderer
 
 const closeBtn = document.getElementById('closeBtn')
 
+
 closeBtn.addEventListener('click', function(event){
   const window = remote.getCurrentWindow();
   window.close();
