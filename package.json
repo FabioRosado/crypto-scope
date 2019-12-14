@@ -13,7 +13,7 @@
     "electron": "2.0.9"
   },
   "dependencies": {
-    "axios": ">=0.18.1",
+    "axios": "^0.18.1",
     "electron-store": "^2.0.0",
     "npm": "^6.13.4"
   }
